@@ -49,13 +49,13 @@ public class CryTekController {
     int newCount = readFromDB();
     var pool = dataSource.get();
     try (var connection = pool.getConnection()) {
-      try (var statement =
-          connection.prepareStatement("UPDATE crytek_application SET visit_count = ?")) {
-        statement.setInt(1, newCount + 1);
+      try (var statement = connection.prepareStatement("UPDATE crytek_application SET visit_count = ?")) {
+        statement.setInt(1, newCount +1);
         statement.executeUpdate();
       }
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
   }
+
 }

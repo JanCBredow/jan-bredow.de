@@ -54,12 +54,9 @@ public final class HikariDataSourceProvider {
     hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", poolConfig.prepStmtCacheSqlLimit());
     hikariConfig.addDataSourceProperty("useServerPrepStmts", poolConfig.useServerPrepStmts());
     hikariConfig.addDataSourceProperty("useLocalSessionState", poolConfig.useLocalSessionState());
-    hikariConfig.addDataSourceProperty(
-        "rewriteBatchedStatements", poolConfig.rewriteBatchedStatements());
-    hikariConfig.addDataSourceProperty(
-        "cacheResultSetMetadata", poolConfig.cacheResultSetMetadata());
-    hikariConfig.addDataSourceProperty(
-        "cacheServerConfiguration", poolConfig.cacheServerConfiguration());
+    hikariConfig.addDataSourceProperty("rewriteBatchedStatements", poolConfig.rewriteBatchedStatements());
+    hikariConfig.addDataSourceProperty("cacheResultSetMetadata", poolConfig.cacheResultSetMetadata());
+    hikariConfig.addDataSourceProperty("cacheServerConfiguration", poolConfig.cacheServerConfiguration());
     hikariConfig.addDataSourceProperty("elideSetAutoCommits", poolConfig.elideSetAutoCommits());
     hikariConfig.addDataSourceProperty("maintainTimeStats", poolConfig.maintainTimeStats());
     hikariConfig.addDataSourceProperty("ApplicationName", poolConfig.applicationName());
