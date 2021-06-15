@@ -17,6 +17,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     
     // Dependency Injection, aside of Springboots Autowireing, my Spring-App is controllable
     // so aside the webserver itself, it runs a small CLI-App aswell

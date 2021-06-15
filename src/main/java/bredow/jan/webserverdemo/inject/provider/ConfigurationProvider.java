@@ -34,7 +34,6 @@ public final class ConfigurationProvider {
 
   private Configuration readOrCreate() {
     if (CONFIG_FILE.exists()) {
-      LOGGER.info("Configurationfile was found, try to load it");
       return readFromFile();
     }
     return createNewFile();
@@ -59,6 +58,7 @@ public final class ConfigurationProvider {
     try (var writer = new BufferedWriter(new FileWriter(CONFIG_FILE))) {
       writer.write(GSON.toJson(configuration));
       writer.flush();
+      LOGGER.info("Configurationfile was created");
     } catch (IOException failure) {
       var exitCode = ExitCode.CONFIGURATION_READ_ERROR;
       exitWith(

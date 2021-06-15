@@ -20,15 +20,14 @@ public class CryTekController {
 
   @GetMapping("/hello-crytek")
   public String find(Model model) {
-    countUp();
-    var count = readFromDB();
 
-    model.addAttribute("access_count", count);
+    countUp();
+    model.addAttribute("access_count", readCurrentCountFromDatabase());
 
     return "hello-crytek";
   }
 
-  private int readFromDB() {
+  private int readCurrentCountFromDatabase() {
     var pool = dataSource.get();
     try (var connection = pool.getConnection()) {
       try (var statement = connection.prepareStatement("SELECT * FROM crytek_application")) {
@@ -46,16 +45,16 @@ public class CryTekController {
   }
 
   private void countUp() {
-    int newCount = readFromDB();
+    int newCount = readCurrentCountFromDatabase();
     var pool = dataSource.get();
     try (var connection = pool.getConnection()) {
-      try (var statement = connection.prepareStatement("UPDATE crytek_application SET visit_count = ?")) {
-        statement.setInt(1, newCount +1);
+      try (var statement =
+          connection.prepareStatement("UPDATE crytek_application SET visit_count = ?")) {
+        statement.setInt(1, newCount + 1);
         statement.executeUpdate();
       }
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
   }
-
 }
