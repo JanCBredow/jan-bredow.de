@@ -7,7 +7,10 @@ public enum ExitCode {
   int exitCode;
   String errorMessage;
 
-  ExitCode(int exitCode, String errorMessage) {}
+  ExitCode(int exitCode, String errorMessage) {
+    this.exitCode = exitCode;
+    this.errorMessage = errorMessage;
+  }
 
   public int exitCodeNumerical() {
     return exitCode;

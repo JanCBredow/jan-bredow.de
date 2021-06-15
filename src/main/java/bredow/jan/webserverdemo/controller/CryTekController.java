@@ -18,6 +18,10 @@ public class CryTekController {
     this.dataSource = dataSource;
   }
 
+  /** this is for counting, how many times my application has been viewed via QR-Code
+   * @param model the MVC Model
+   * @return Thymeleaf Template name
+   */
   @GetMapping("/hello-crytek")
   public String find(Model model) {
 

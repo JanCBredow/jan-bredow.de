@@ -8,8 +8,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.requiresChannel().anyRequest().requiresSecure();
-    }
+
+  /** make sure all requests uses SSL
+   * @param http ignored
+   * @throws Exception ignored
+   */
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.requiresChannel().anyRequest().requiresSecure();
+  }
 }

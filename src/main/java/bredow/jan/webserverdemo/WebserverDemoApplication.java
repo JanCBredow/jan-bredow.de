@@ -12,11 +12,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 @SuppressWarnings("SpellCheckingInspection")
 @SpringBootApplication
 public class WebserverDemoApplication {
   private static final ConsoleLogger LOG = ConsoleLogger.of(WebserverDemoApplication.class);
+
 
   public static void main(String[] args) {
     SpringApplication.run(WebserverDemoApplication.class, args);
@@ -39,10 +41,10 @@ public class WebserverDemoApplication {
           .log("Booting up using following Configuration-Entrys (Passwords hidden)")
           .space(1)
           .logSpaced("Found Database Configuration using following Entries", 2)
-          .appendLogger(printConfigurationProperties(databaseConfiguration))
+          .invokeLogger(printConfigurationProperties(databaseConfiguration))
           .logSpaced("", 4)
           .logSpaced("Connecting to the Database using the following Database Settings", 2)
-          .appendLogger(printPoolProperties(poolConfiguration));
+          .invokeLogger(printPoolProperties(poolConfiguration));
 
       var pool = hikariDataSourceProvider.get();
 
@@ -54,7 +56,13 @@ public class WebserverDemoApplication {
 
       // Give User ability to execute Commands or enable Debug
 
-      // Prepare Database Connection
+      Thread terminal = new Thread(this::enableScanner, "JCB_TERMINAL");
+      terminal.start();
+
+    }
+
+    private void enableScanner() {
+      var scanner = new Scanner(System.in);
     }
 
     private boolean isConnected(HikariDataSource pool) {
@@ -71,7 +79,7 @@ public class WebserverDemoApplication {
           .logSpaced("Hostname:  \"" + databaseConfiguration.databaseHost() + "\"", 4)
           .logSpaced("Port:      \"" + databaseConfiguration.databasePort() + "\"", 4)
           .logSpaced("Database:  \"" + databaseConfiguration.databaseName() + "\"", 4)
-          .appendLogger(printDatabaseUserCredentials(databaseConfiguration));
+          .invokeLogger(printDatabaseUserCredentials(databaseConfiguration));
     }
 
     private ConsoleLogger printDatabaseUserCredentials(

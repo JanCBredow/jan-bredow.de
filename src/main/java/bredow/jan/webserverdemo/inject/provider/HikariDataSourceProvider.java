@@ -19,6 +19,7 @@ public final class HikariDataSourceProvider {
     this.configuration = configurationProvider.get();
   }
 
+  /** @return HikariDataSource, aka. Connectionpool */
   public HikariDataSource get() {
 
     if (dataSource != null) {

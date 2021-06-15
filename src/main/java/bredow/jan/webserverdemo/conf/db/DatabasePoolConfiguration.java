@@ -1,6 +1,15 @@
 package bredow.jan.webserverdemo.conf.db;
 
+
+/**
+ * This class is in Usage only in usage to
+ * create a Default Config and parse it via GSON
+ */
+
+
+@SuppressWarnings("FieldCanBeLocal")
 public final class DatabasePoolConfiguration {
+
   private final int maximumPoolSize = 5;
   private final int minimumIdle = 3;
 

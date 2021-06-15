@@ -28,6 +28,7 @@ public final class ConfigurationProvider {
           .enableComplexMapKeySerialization()
           .create();
 
+  /** @return General Configuration Object */
   public Configuration get() {
     return readOrCreate();
   }
@@ -44,7 +45,7 @@ public final class ConfigurationProvider {
         Configuration.createWith(
             DatabaseConfiguration.create(
                 "localhost",
-                3006,
+                5432,
                 "janbredowde",
                 DatabaseCredentials.withCredentials("username", "12345 is a bad password")),
             DatabasePoolConfiguration.empty());
@@ -60,7 +61,7 @@ public final class ConfigurationProvider {
       writer.flush();
       LOGGER.info("Configurationfile was created");
     } catch (IOException failure) {
-      var exitCode = ExitCode.CONFIGURATION_READ_ERROR;
+      var exitCode = ExitCode.CONFIGURATION_WRITE_ERROR;
       exitWith(
           LOGGER
               .error("An error occurred while trying to save the Configuration-File")
