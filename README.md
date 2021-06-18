@@ -19,7 +19,7 @@ This project requires:
 
 Create the required Tables
 ~~~~sql
-CREATE TABLE IF NOT EXISTS crtek_application(
+CREATE TABLE IF NOT EXISTS crytek_application(
     visit_count BIGINT default -1
 );
 ~~~~
