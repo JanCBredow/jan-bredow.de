@@ -42,6 +42,6 @@ java -jar webpresence.jar
 
 run the Application unattended
 ~~~~terminal
-apt-get install screen -y &&
+apt-get install screen openjdk-16-jre -y &&
 screen -S webpresence java -jar webpresence.jar
 ~~~~
