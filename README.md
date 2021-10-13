@@ -19,7 +19,7 @@ This project requires:
 
 Create the required Tables
 ~~~~sql
-CREATE TABLE IF NOT EXISTS crytek_application(
+CREATE TABLE IF NOT EXISTS webserver-application(
     visit_count BIGINT default -1
 );
 ~~~~
@@ -42,6 +42,6 @@ java -jar webpresence.jar
 
 run the Application unattended
 ~~~~terminal
-apt-get install screen openjdk-16-jre -y &&
+sudo apt-get install screen openjdk-16-jre -y &&
 screen -S webpresence java -jar webpresence.jar
 ~~~~
