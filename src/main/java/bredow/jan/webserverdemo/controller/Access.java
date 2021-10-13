@@ -1,19 +1,25 @@
 package bredow.jan.webserverdemo.controller;
 
 import bredow.jan.webserverdemo.inject.provider.HikariDataSourceProvider;
+import bredow.jan.webserverdemo.log.ConsoleLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.SQLException;
 
 @SuppressWarnings({"SqlResolve", "SqlNoDataSourceInspection"})
 @Controller
-public final class AccessCount {
+public final class Access {
+  private static final ConsoleLogger LOG = ConsoleLogger.of(Access.class);
   private final HikariDataSourceProvider dataSource;
 
   @Autowired
-  private AccessCount(HikariDataSourceProvider dataSource) {
+  private Access(HikariDataSourceProvider dataSource) {
     this.dataSource = dataSource;
   }
 
@@ -26,6 +32,15 @@ public final class AccessCount {
   public String count() {
     countUp();
     return "index";
+  }
+
+  @RequestMapping(value = "/robots.txt")
+  public void robots(HttpServletRequest request, HttpServletResponse response) {
+    try {
+      response.getWriter().write("User-agent: *\nAllow: /\n");
+    } catch (IOException exception) {
+      LOG.error("some robots causing serious trouble: " + exception.getMessage());
+    }
   }
 
   private int readCurrentCountFromDatabase() {
