@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   web:
+    restart: always
     build: .
     ports:
       - "8443:8443"
