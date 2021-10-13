@@ -31,7 +31,7 @@ public final class AccessCount {
   private int readCurrentCountFromDatabase() {
     var pool = dataSource.get();
     try (var connection = pool.getConnection()) {
-      try (var statement = connection.prepareStatement("SELECT * FROM webserver-application")) {
+      try (var statement = connection.prepareStatement("SELECT * FROM webserver_application")) {
         try (var result = statement.executeQuery()) {
           if (!result.next()) {
             return -1;
@@ -50,7 +50,7 @@ public final class AccessCount {
     var pool = dataSource.get();
     try (var connection = pool.getConnection()) {
       try (var statement =
-             connection.prepareStatement("UPDATE webserver-application SET visit_count = ?")) {
+             connection.prepareStatement("UPDATE webserver_application SET visit_count = ?")) {
         statement.setInt(1, newCount + 1);
         statement.executeUpdate();
       }
