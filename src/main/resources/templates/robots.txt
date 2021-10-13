@@ -1,0 +1,10 @@
+<html>
+<head>
+<meta name="google-site-verification" content="ns91Eh83sPn3h1af_AucSLBQc96B_Jfe4m5QaeI-sUY" />
+<title> My title </title>
+</head>
+<body>
+User-agent: *
+Allow: /
+</body>
+</html>
