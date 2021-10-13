@@ -49,7 +49,7 @@ public class WebserverDemoApplication {
       var pool = hikariDataSourceProvider.get();
 
       if (!isConnected(pool)) {
-        LOG.error("Unable to create database connection!").error("fallback to non-db mode");
+        LOG.error("Unable to create database connection!");
       } else {
         LOG.info("Successfully connected to the Database.");
       }

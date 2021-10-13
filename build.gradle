@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.5.1-SNAPSHOT'
+    id 'org.springframework.boot' version '2.5.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
@@ -18,17 +18,17 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    
+
     // Dependency Injection, aside of Springboots Autowireing, my Spring-App is controllable
-    // so aside the webserver itself, it runs a small CLI-App aswell
+    // so aside the webserver itself, it runs a small CLI-App as well
     // and guava, cause why not
     implementation group: 'com.google.inject', name: 'guice', version: '5.0.1'
-    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.7'
-    implementation group: 'com.google.guava', name: 'guava', version: '29.0-jre'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.8'
+    implementation group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
 
     // Database, i am using PostgreSQL for this project cause i like psql
-    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.19'
-    implementation group: 'com.zaxxer', name: 'HikariCP', version: '4.0.3'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.24'
+    implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.0'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

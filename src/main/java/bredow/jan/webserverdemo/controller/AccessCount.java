@@ -3,38 +3,35 @@ package bredow.jan.webserverdemo.controller;
 import bredow.jan.webserverdemo.inject.provider.HikariDataSourceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.sql.SQLException;
 
 @SuppressWarnings({"SqlResolve", "SqlNoDataSourceInspection"})
 @Controller
-public class CryTekController {
+public final class AccessCount {
   private final HikariDataSourceProvider dataSource;
 
   @Autowired
-  private CryTekController(HikariDataSourceProvider dataSource) {
+  private AccessCount(HikariDataSourceProvider dataSource) {
     this.dataSource = dataSource;
   }
 
-  /** this is for counting, how many times my application has been viewed via QR-Code
-   * @param model the MVC Model
+  /**
+   * this is for counting, how many times my application has been viewed via QR-Code
+   *
    * @return Thymeleaf Template name
    */
-  @GetMapping("/hello-crytek")
-  public String find(Model model) {
-
+  @GetMapping("/")
+  public String count() {
     countUp();
-    model.addAttribute("access_count", readCurrentCountFromDatabase());
-
-    return "hello-crytek";
+    return "index";
   }
 
   private int readCurrentCountFromDatabase() {
     var pool = dataSource.get();
     try (var connection = pool.getConnection()) {
-      try (var statement = connection.prepareStatement("SELECT * FROM crytek_application")) {
+      try (var statement = connection.prepareStatement("SELECT * FROM webserver-application")) {
         try (var result = statement.executeQuery()) {
           if (!result.next()) {
             return -1;
@@ -53,7 +50,7 @@ public class CryTekController {
     var pool = dataSource.get();
     try (var connection = pool.getConnection()) {
       try (var statement =
-          connection.prepareStatement("UPDATE crytek_application SET visit_count = ?")) {
+             connection.prepareStatement("UPDATE webserver-application SET visit_count = ?")) {
         statement.setInt(1, newCount + 1);
         statement.executeUpdate();
       }

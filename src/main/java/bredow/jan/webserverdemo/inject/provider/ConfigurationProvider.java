@@ -70,7 +70,7 @@ public final class ConfigurationProvider {
               .warn("We tried to write an update to the Config-File, called: ")
               .warn("    " + CONFIG_FILE.getName())
               .warn(
-                  "but we had trouble to write to the File or access it. See errorcodes.txt for further details")
+                "but we had trouble to write to the File or access it.")
               .space()
               .errorIf("Full Error Message: " + failure.getMessage(), debugEnabled()),
           exitCode);
@@ -86,17 +86,17 @@ public final class ConfigurationProvider {
   private Configuration readFromFile() {
     try (var reader = new BufferedReader(new FileReader(CONFIG_FILE))) {
       return GSON.fromJson(reader, Configuration.class);
-    } catch (IOException failure) {
+    } catch (Throwable failure) {
       var exitCode = ExitCode.CONFIGURATION_READ_ERROR;
       exitWith(
-          LOGGER
-              .error("An error occurred while trying to load the Configuration-File")
-              .space(5)
-              .warn("We Sorry! :/")
-              .warn("We tried to lookup the Configuration-File, called")
-              .warn("    " + CONFIG_FILE.getName())
-              .warn("but we could not find or access it. See errorcodes.txt for further details")
-              .space()
+        LOGGER
+          .error("An error occurred while trying to load the Configuration-File")
+          .space(5)
+          .warn("We Sorry! :/")
+          .warn("We tried to lookup the Configuration-File, called")
+          .warn("    " + CONFIG_FILE.getName())
+          .warn("but we could not find or access it. See errorcodes.txt for further details")
+          .space()
               .errorIf("Full Error Message: " + failure.getMessage(), debugEnabled()),
           exitCode);
       return null;
