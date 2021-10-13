@@ -39,7 +39,7 @@ public class WebserverDemoApplication {
 
       LOG.space()
           .log("Booting up using following Configuration-Entrys (Passwords hidden)")
-          .space(1)
+          .space(2)
           .logSpaced("Found Database Configuration using following Entries", 2)
           .invokeLogger(printConfigurationProperties(databaseConfiguration))
           .logSpaced("", 4)

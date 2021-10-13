@@ -19,7 +19,7 @@ This project requires:
 
 Create the required Tables
 ~~~~sql
-CREATE TABLE IF NOT EXISTS webserver-application(
+CREATE TABLE IF NOT EXISTS webserver_application(
     visit_count BIGINT default -1
 );
 ~~~~
